@@ -113,6 +113,22 @@ void inorderTraversal(struct node *root)
     inorderTraversal(root->right);
 }
 
+int max(int num1, int num2)
+{
+    return (num1 > num2) ? num1 : num2;
+}
+int findHeight(struct node *root)
+{
+    struct node *temp = root;
+
+    if (temp == NULL)
+    {
+        return -1;
+    }
+
+    return max(findHeight(root->left), findHeight(root->right)) + 1;
+}
+
 void printLevels(struct node *root)
 {
 
@@ -122,17 +138,26 @@ void printLevels(struct node *root)
         return;
     }
 
+    int hig = findHeight(root) + 1;
     enqueue(root);
-    while (f != NULL && r != NULL)
+
+    for (int i = 1; i <= hig; i++)
     {
-        temp = dequeue();
-        printf("%d\t", temp->data);
-        if (temp->left != NULL)
-            enqueue(temp->left);
-        if (temp->right != NULL)
-            enqueue(temp->right);
+        for (int j = 1; j <= i; j++)
+        {
+            if (f != NULL && r != NULL)
+            {
+                temp = dequeue();
+                printf("%d\t", temp->data);
+            }
+
+            if (temp->left != NULL)
+                enqueue(temp->left);
+            if (temp->right != NULL)
+                enqueue(temp->right);
+        }
+        printf("\n");
     }
-    printf("\n");
 }
 int main()
 {
