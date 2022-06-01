@@ -50,17 +50,17 @@ void showAdjacencyMatrix(int Adj[][N + 1])
 
 void BFS(int array[][N + 1], int n)
 {
-    int visited[n];
-    // printf("Enter vertex: ");
-    // scanf("%d", &v);
+    int visited[n],v;
+    printf("Enter vertex: ");
+    scanf("%d", &v);
    
     for(int i=0; i<n;i++){
         visited[i] = 0;
     }
 
-    printf("%d", 0);
-    visited[0] = 1;
-    enqueue(0); 
+    printf("%d ", v);
+    visited[v] = 1;
+    enqueue(v); 
     
     while (!isEmpty())
     {
